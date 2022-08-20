@@ -3,7 +3,6 @@
 namespace PHP\MVC\App;
 
 class Router
-
 {
     private static array $routes= [];
 
@@ -28,8 +27,9 @@ class Router
 
         foreach (self::$routes as $route) {
             if ($route['path'] == $path && $route['method'] == $method) {
-                echo "CONTROLLER : " . $route['controller'] . "
-                FUNCTION : " . $route['function'];
+                $function = $route['function'];
+                $controller = new $route['controller'];
+                $controller->$function();
                 return;
             }
         }
