@@ -25,5 +25,16 @@ class Router
         }
 
         $method = $_SERVER['REQUEST_METHOD'];
+
+        foreach (self::$routes as $route) {
+            if ($route['path'] == $path && $route['method'] == $method) {
+                echo "CONTROLLER : " . $route['controller'] . "
+                FUNCTION : " . $route['function'];
+                return;
+            }
+        }
+
+        http_response_code(404);
+        echo "CONTROLLER NOT FOUND";
     }
 }
